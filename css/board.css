@@ -1,0 +1,459 @@
+/*[ FONT ]*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../fonts/Poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: Poppins-ExtraLight;
+    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/Poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Italic;
+    src: url('../fonts/Poppins/Poppins-Italic.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('../fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
+/*[ FONT ]
+///////////////////////////////////////////////////////////
+*/
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url('../fonts/montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Medium;
+    src: url('../fonts/montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../fonts/montserrat/Montserrat-Bold.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Italic;
+    src: url('../fonts/montserrat/Montserrat-Italic.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Black;
+    src: url('../fonts/montserrat/Montserrat-Black.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Black;
+    src: url('../fonts/poppins/Poppins-Black.ttf');
+}
+
+/*---------------------------------------------*/
+
+/* [ Header ] */
+.header {
+    height: 125px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.container-menu-header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1100;
+    box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -o-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+}
+
+/* [ Menu ] */
+.wrap-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/** [ Logo ] **/
+.logo {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 37px;
+    color: black;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+/* [ Menu ] */
+.main_menu {
+    list-style-type: none;
+    margin: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_menu > li {
+    display: block;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.main_menu > li > a {
+    font-family: Poppins-Medium;
+    font-size: 20px;
+    color: #333;
+    margin-left: 7px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+
+li.sale-noti > a {
+    color: #e65540;
+}
+
+.main_menu > li > a:hover {
+    text-decoration: none;
+    color: #6c7ae0;
+}
+
+
+/* [ Header_Icon ] */
+input:focus {
+    outline: none;
+}
+
+.close_position {
+    margin-top: 32px;
+    position: absolute;
+    right: 22px;
+}
+
+.side_login {
+    font-size: 25px;
+}
+
+.sidebar_item_position {
+    padding-left: 35px;
+    font-size: 22px;
+    padding-top: 120px;
+}
+
+.side_item_color {
+    color: gray;
+}
+
+.side_phone {
+    font-family: Poppins-Italic;
+    font-size: 23px;
+    color: #ff353d;
+}
+
+.side_cust_info_li {
+    font-size: 13px;
+}
+
+/* 전체 옵션 */
+* {
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Malgun gothic','Sans-Serif','Arial';
+}
+a {
+    text-decoration: none;
+    color:#333;
+}
+ul li {
+    list-style:none;
+}
+
+/* 공통 */
+.fl {
+    float:left;
+}
+.tc {
+    text-align:center;
+}
+
+/* 게시판 목록 */
+#board_area {
+    width: 900px;
+    position: relative;
+}
+.list-table {
+    margin-top: 10px;
+}
+.list-table thead th{
+    height:40px;
+    border-top:2px solid #09C;
+    border-bottom:1px solid #CCC;
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 20px;
+}
+
+.list-table tbody td{
+    text-align:center;
+    padding:10px 0;
+    border-bottom:1px solid #CCC; height:20px;
+    font-size: 14px
+}
+#write_btn {
+    position: absolute;
+    margin-top:20px;
+    right: 0;
+}
+
+/* 글쓰기 */
+#board_write {
+    width:900px;
+    position:relative;
+    margin:0 auto;
+}
+#write_area {
+    margin-top:70px;
+    font-size:14px;}
+
+#in_title {
+    margin-top:30px;
+}
+#in_title textarea {
+    font-weight:bold;
+    font-size:26px;
+    color:#333;
+    width: 900px;
+    border:none;
+    resize: none;
+}
+.wi_line {
+    border:solid 1px lightgray;
+    margin-top:10px;
+}
+#in_content {
+    margin-top:10px;
+}
+#in_content textarea {
+    font-size:20px;
+    color:#333;
+    width: 900px;
+    height: 400px;
+    resize: none;
+    border: 1px solid #e6e6e6;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+#in_pw input {
+    font-size:14px;
+    margin-top:10px;
+}
+.bt_se {
+    margin-top:20px;
+    text-align:center;
+}
+
+#in_file {
+    margin-top: 15px;
+    font-size: 20px;
+    padding: 10px;
+}
+.btn_file {
+
+}
+
+.cb_lock {
+    display:inline !important;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+}
+.input_pw {
+    display:inline !important;
+    margin-left: 560px;
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #e6e6e6;
+}
+
+.btn_write {
+    font-family: sans-serif;
+    background-color: #e6e6e6; /* Green */
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    width: 100%;
+    height:35px;
+}
+
+.btn_write:hover {
+    background-color: red;
+    color: white;
+}
+
+
+/* [ 게시물 읽기 ] */
+#tb_read {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#tb_head_read {
+    height: 50px;
+    background-color: #e6e6e6;
+}
+#tb_content_text {
+    height: 50px;
+    background-color: #e6e6e6;
+}
+
+.td_content {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+/* [ 페이징 ] */
+.pagination2 {
+    display: inline-block;
+    margin-top: 60px;
+}
+
+.pagination2 a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination2 a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination2 a:hover:not(.active) {background-color: #ddd;}
+
+/* [ 검색 ] */
+#search_box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 560px;
+}
+
+#search_input {
+    width: 200px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius:4px;
+    font-size: 17px;
+    background-color: white;
+    background-image: url("../images/icons/searchicon.png");
+    background-position: 10px 4px;
+    background-repeat: no-repeat;
+    padding: 12px 30px 12px 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn_search {
+    background-color: #ccc;
+    color: black;
+    border: 2px solid #ccc;
+    padding: 3.2px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.btn_write2 {
+    background-color: #ccc;
+    color: black;
+    border: 2px solid #ccc;
+    padding: 3.2px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#search_sel {
+    padding: 3.2px 12px;
+    text-align: center;
+}
+
+.acolor {
+    color: black;
+}

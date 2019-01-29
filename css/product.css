@@ -1,0 +1,301 @@
+/*[ FONT ]*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../fonts/Poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: Poppins-ExtraLight;
+    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/Poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Italic;
+    src: url('../fonts/Poppins/Poppins-Italic.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('../fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
+/*[ FONT ]
+///////////////////////////////////////////////////////////
+*/
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url('../fonts/montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Medium;
+    src: url('../fonts/montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../fonts/montserrat/Montserrat-Bold.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Italic;
+    src: url('../fonts/montserrat/Montserrat-Italic.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Black;
+    src: url('../fonts/montserrat/Montserrat-Black.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Black;
+    src: url('../fonts/poppins/Poppins-Black.ttf');
+}
+
+/*---------------------------------------------*/
+/* [ Header ] */
+.header {
+    height: 125px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.container-menu-header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1100;
+    box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -o-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+}
+
+/* [ Menu ] */
+.wrap-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/** [ Logo ] **/
+.logo {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 37px;
+    color: black;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+/* [ Menu ] */
+.main_menu {
+    list-style-type: none;
+    margin: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_menu > li {
+    display: block;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.main_menu > li > a {
+    font-family: Poppins-Medium;
+    font-size: 20px;
+    color: #333;
+    margin-left: 7px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+
+li.sale-noti > a {
+    color: #e65540;
+}
+
+.main_menu > li > a:hover {
+    text-decoration: none;
+    color: #6c7ae0;
+}
+
+
+/* [ Header_Icon ] */
+input:focus {
+    outline: none;
+}
+
+.close_position {
+    margin-top: 32px;
+    position: absolute;
+    right: 22px;
+}
+
+.side_login {
+    font-size: 25px;
+}
+
+.sidebar_item_position {
+    padding-left: 35px;
+    font-size: 22px;
+}
+
+.side_item_color {
+    color: gray;
+}
+
+.side_phone {
+    font-family: Poppins-Italic;
+    font-size: 23px;
+    color: #ff353d;
+}
+
+.side_cust_info_li {
+    font-size: 13px;
+}
+
+
+/* [ Product Main_Image ] */
+@media (max-width: 768px) {
+    .respon5 {
+        width: 100%;
+    }
+}
+
+.slick3 {
+    width: 75%;
+}
+
+.s-text15 {
+    font-family: Montserrat-Regular;
+    font-size: 20px;
+    color: #666666;
+    line-height: 1.8;
+}
+
+.bo4 {
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+}
+
+.size_select {
+    width: 330px;
+    height: 40px;
+    padding-left: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.buy_btn {
+    border: 1px solid;
+    padding: 8px;
+    width: 25%;
+    border-radius: 10px;
+}
+
+.cart_btn {
+    border: 1px solid;
+    padding: 8px;
+    width: 40%;
+    border-radius: 10px;
+}
+
+.buy_btn:hover {
+    background: #333333;
+    color: white;
+}
+
+.cart_btn:hover {
+    background: #333333;
+    color: white;
+}
+
+.my_input {
+    display: inline;
+}
+
+.my_count {
+    width: 30px;
+    padding-left: 10px;
+}
+
+.my_-count {
+    width: 30px;
+    height: 30px;
+}
+
+.my_\+count {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar_item_position2 {
+    padding-left: 35px;
+    font-size: 22px;
+    padding-top: 70px;
+}
+
+

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChanStyle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/Streaming/images/icons/title_icon.png"/>
+    <link rel="stylesheet" type="text/css" href="/Streaming/css/streaming.css">
+    <link rel="stylesheet" type="text/css" href="/Streaming/vendor/semantic/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/Streaming/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="/Streaming/vendor/semantic/semantic.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="container-menu-header">
+        <div class="wrap-header">
+            <a class="logo" href="http://localhost:80/ChanStyle/index.php">CHANSTYLE</a>
+
+            <div class="wrap_menu">
+                <nav class="menu">
+                    <ul class="main_menu">
+                        <li class="active-menu"><a href="http://localhost:80/ChanStyle/index.php">Home</a></li>
+                        <li class="sale-noti"><a href="http://localhost:80/ChanStyle/page/Shop/Shop_Main.php">Shop</a>
+                        </li>
+                        <li><a href="http://localhost:80/ChanStyle/board/board.php">Board</a></li>
+                        <li><a href="http://localhost:3000/streaming.html">LiveShop</a></li>
+                        <li><a href="http://localhost:80/ChanStyle/page/About/about.php">About</a></li>
+                    </ul>
+
+                    <div class="ui sidebar right vertical menu">
+                        <button class="close_position"><i class="side_bar close icon"></i></button>
+                        <ul class="sidebar_item_position">
+                            <li><a href='http://localhost:80/ChanStyle/page/Login/Login.php' class='side_item_color'>Login</a>
+                            </li>
+                            <li class="p-t-40"><a href='http://localhost:80/ChanStyle/page/Login/Login.php'
+                                                  class='side_item_color'>MyPage</a></li>
+                            <li class="p-t-40"><a href="http://localhost:80/ChanStyle/page/Shop/cart.php"
+                                                  class="side_item_color"> Cart </a></li>
+                            <li class="p-t-40"><a href="http://localhost:80/ChanStyle/board/board.php"
+                                                  class="side_item_color"> FAQs </a></li>
+                        </ul>
+
+                        <div style="padding-top: 110px">
+                            <h2 style="color: black; padding-left: 20px"> CUSTOMER CENTER </h2>
+                            <ul id="cc_ul" style="padding-left: 30px">
+                                <li class="side_phone">1544 - 0000</li>
+                                <li class="side_cust_info_li" style="padding-top: 30px;">MON-FRI AM 10:00 ~ PM 05:00
+                                </li>
+                                <li class="side_cust_info_li" style="padding-top: 10px;">[ LUNCH TIME ]</li>
+                                <li style="padding-top: 5px;">AM 10:00 ~ PM 05:00</li>
+                                <li class="side_cust_info_li" style="padding-top: 10px;">SUNDAY/HOLIDAY OFF</li>
+                            </ul>
+                        </div>
+
+                        <div style="padding-top: 60px; padding-left: 30px;">
+                            <h2>BANK INFO</h2>
+                            <ul style="list-style-type: none;">
+                                <li>국민 274102-04-139880</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pusher" style="position: absolute; right: 20px; top: 28px; ">
+                        <button class="menu_btn"><i id="menu" class="side_bar align justify icon icon_width"></i>
+                        </button>
+                    </div>
+                    <script>
+                        $('.side_bar').click(function () {
+                            $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
+                        })
+                    </script>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<h4 class="m-text17" style="margin-left: 150px; margin-bottom: 20px">방송제목</h4>
+<div id="streaming_container">
+    <video id="video-preview" autoplay="true" style="width: 880px; height: 690px;" controls loop></video>
+    <div id="chat">
+        <textarea id="chat_area" readonly></textarea>
+        <form>
+            <input id="name" type="hidden" name="name">
+            <input id="chat_input" type="text" placeholder="내용을 입력해주세요.">
+            <input id="chat_submit" type="submit" value="전송">
+        </form>
+    </div>
+    <div style="position: absolute; left: 170px; margin-top: 20px">
+        <input type="text" id="broadcast-id" value="testroom" autocorrect=off autocapitalize=off size=20>
+        <button id="open-or-join" class="btn"><i class="fa fa-play"></i> 방송 시작</button>
+        <div class="make-center" id="broadcast-viewers-counter"></div>
+    </div>
+
+    <script src="/Streaming/dist/RTCMultiConnection.min.js"></script>
+    <script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+        var socket = io();
+
+        // 스트리밍
+        // browser-crash 를 막기 위해 recording을 disable;
+        var enableRecordings = false;
+
+        var connection = new RTCMultiConnection();
+
+        // its mandatory in v3
+        connection.enableScalableBroadcast = true;
+
+        // 중계자(방송자)의 인원을 1명으로 고정
+        connection.maxRelayLimitPerUser = 1;
+
+        // we don't need to keep room-opened
+        // scalable-broadcast.js will handle stuff itself.
+        connection.autoCloseEntireSession = true;
+
+        // by default, socket.io server is assumed to be deployed on your own URL
+        connection.socketURL = 'http://localhost:3001/';
+
+        // comment-out below line if you do not have your own socket.io server
+        // connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+        connection.socketMessageEvent = 'scalable-media-broadcast-demo';
+
+        connection.connectSocket(function (socket) {
+            socket.on('logs', function (log) {
+            });
+
+            // 방송이 이미 만들어져 있고, 시청자가 참여하는 부분
+            socket.on('join-broadcaster', function (hintsToJoinBroadcast) {
+                console.log('join-broadcaster', hintsToJoinBroadcast);
+
+                connection.session = hintsToJoinBroadcast.typeOfStreams;
+                connection.sdpConstraints.mandatory = {
+                    OfferToReceiveVideo: !!connection.session.video,
+                    OfferToReceiveAudio: !!connection.session.audio
+                };
+                connection.broadcastId = hintsToJoinBroadcast.broadcastId;
+                connection.join(hintsToJoinBroadcast.userid);
+            });
+
+            // 나갔다가 다시 참여하는 부분
+            socket.on('rejoin-broadcast', function (broadcastId) {
+                console.log('rejoin-broadcast', broadcastId);
+
+                connection.attachStreams = [];
+                socket.emit('check-broadcast-presence', broadcastId, function (isBroadcastExists) {
+                    if (!isBroadcastExists) {
+                        // the first person (i.e. real-broadcaster) MUST set his user-id
+                        connection.userid = broadcastId;
+                    }
+
+                    socket.emit('join-broadcast', {
+                        broadcastId: broadcastId,
+                        userid: connection.userid,
+                        typeOfStreams: connection.session
+                    });
+                });
+            });
+
+            // 방송이 꺼졌을 때
+            socket.on('broadcast-stopped', function (broadcastId) {
+                // alert('Broadcast has been stopped.');
+                // location.reload();
+                console.error('broadcast-stopped', broadcastId);
+                alert('This broadcast has been stopped.');
+            });
+
+            // 방송 시작(중계자가 방송을 만드는 부분)
+            socket.on('start-broadcasting', function (typeOfStreams) {
+                console.log('start-broadcasting', typeOfStreams);
+
+                // host i.e. sender should always use this!
+                connection.sdpConstraints.mandatory = {
+                    OfferToReceiveVideo: false,
+                    OfferToReceiveAudio: false
+                };
+                connection.session = typeOfStreams;
+
+                // "open" method here will capture media-stream
+                // we can skip this function always; it is totally optional here.
+                // we can use "connection.getUserMediaHandler" instead
+                connection.open(connection.userid);
+            });
+        });
+
+        window.onbeforeunload = function() {
+            // Firefox is ugly.
+            document.getElementById('open-or-join').disabled = false;
+        };
+
+        var videoPreview = document.getElementById('video-preview');
+
+        connection.onstream = function(event) {
+            if (connection.isInitiator && event.type !== 'local') {
+                return;
+            }
+
+            connection.isUpperUserLeft = false;
+            videoPreview.srcObject = event.stream;
+            videoPreview.play();
+
+            videoPreview.userid = event.userid;
+
+            if (event.type === 'local') {
+                videoPreview.muted = true;
+            }
+
+            if (connection.isInitiator == false && event.type === 'remote') {
+                // he is merely relaying the media
+                connection.dontCaptureUserMedia = true;
+                connection.attachStreams = [event.stream];
+                connection.sdpConstraints.mandatory = {
+                    OfferToReceiveAudio: false,
+                    OfferToReceiveVideo: false
+                };
+
+                connection.getSocket(function(socket) {
+                    socket.emit('can-relay-broadcast');
+
+                    if (connection.DetectRTC.browser.name === 'Chrome') {
+                        connection.getAllParticipants().forEach(function(p) {
+                            if (p + '' != event.userid + '') {
+                                var peer = connection.peers[p].peer;
+                                peer.getLocalStreams().forEach(function(localStream) {
+                                    peer.removeStream(localStream);
+                                });
+                                event.stream.getTracks().forEach(function(track) {
+                                    peer.addTrack(track, event.stream);
+                                });
+                                connection.dontAttachStream = true;
+                                connection.renegotiate(p);
+                                connection.dontAttachStream = false;
+                            }
+                        });
+                    }
+
+                    if (connection.DetectRTC.browser.name === 'Firefox') {
+                        // Firefox is NOT supporting removeStream method
+                        // that's why using alternative hack.
+                        // NOTE: Firefox seems unable to replace-tracks of the remote-media-stream
+                        // need to ask all deeper nodes to rejoin
+                        connection.getAllParticipants().forEach(function(p) {
+                            if (p + '' != event.userid + '') {
+                                connection.replaceTrack(event.stream, p);
+                            }
+                        });
+                    }
+
+                    // Firefox seems UN_ABLE to record remote MediaStream
+                    // WebAudio solution merely records audio
+                    // so recording is skipped for Firefox.
+                    if (connection.DetectRTC.browser.name === 'Chrome') {
+                        repeatedlyRecordStream(event.stream);
+                    }
+                });
+            }
+
+            // to keep room-id in cache
+            localStorage.setItem(connection.socketMessageEvent, connection.sessionid);
+        };
+
+        // ask node.js server to look for a broadcast
+        // if broadcast is available, simply join it. i.e. "join-broadcaster" event should be emitted.
+        // if broadcast is absent, simply create it. i.e. "start-broadcasting" event should be fired.
+        document.getElementById('open-or-join').onclick = function() {
+            var broadcastId = document.getElementById('broadcast-id').value;
+            if (broadcastId.replace(/^\s+|\s+$/g, '').length <= 0) {
+                alert('Please enter broadcast-id');
+                document.getElementById('broadcast-id').focus();
+                return;
+            }
+
+            document.getElementById('open-or-join').disabled = true;
+
+            connection.extra.broadcastId = broadcastId;
+
+            connection.session = {
+                audio: true,
+                video: true,
+                oneway: true
+            };
+
+            connection.getSocket(function(socket) {
+                socket.emit('check-broadcast-presence', broadcastId, function(isBroadcastExists) {
+                    if (!isBroadcastExists) {
+                        // the first person (i.e. real-broadcaster) MUST set his user-id
+                        connection.userid = broadcastId;
+                    }
+
+                    console.log('check-broadcast-presence', broadcastId, isBroadcastExists);
+
+                    socket.emit('join-broadcast', {
+                        broadcastId: broadcastId,
+                        userid: connection.userid,
+                        typeOfStreams: connection.session
+                    });
+                });
+            });
+        };
+
+
+        connection.onstreamended = function() {};
+
+        connection.onleave = function(event) {
+            if (event.userid !== videoPreview.userid) return;
+
+            connection.getSocket(function(socket) {
+                socket.emit('can-not-relay-broadcast');
+
+                connection.isUpperUserLeft = true;
+
+                if (allRecordedBlobs.length) {
+                    // playing lats recorded blob
+                    var lastBlob = allRecordedBlobs[allRecordedBlobs.length - 1];
+                    videoPreview.src = URL.createObjectURL(lastBlob);
+                    videoPreview.play();
+                    allRecordedBlobs = [];
+                } else if (connection.currentRecorder) {
+                    var recorder = connection.currentRecorder;
+                    connection.currentRecorder = null;
+                    recorder.stopRecording(function() {
+                        if (!connection.isUpperUserLeft) return;
+
+                        videoPreview.src = URL.createObjectURL(recorder.getBlob());
+                        videoPreview.play();
+                    });
+                }
+
+                if (connection.currentRecorder) {
+                    connection.currentRecorder.stopRecording();
+                    connection.currentRecorder = null;
+                }
+            });
+        };
+
+        var allRecordedBlobs = [];
+
+        function repeatedlyRecordStream(stream) {
+            if (!enableRecordings) {
+                return;
+            }
+
+            connection.currentRecorder = RecordRTC(stream, {
+                type: 'video'
+            });
+
+            connection.currentRecorder.startRecording();
+
+            setTimeout(function() {
+                if (connection.isUpperUserLeft || !connection.currentRecorder) {
+                    return;
+                }
+
+                connection.currentRecorder.stopRecording(function() {
+                    allRecordedBlobs.push(connection.currentRecorder.getBlob());
+
+                    if (connection.isUpperUserLeft) {
+                        return;
+                    }
+
+                    connection.currentRecorder = null;
+                    repeatedlyRecordStream(stream);
+                });
+            }, 30 * 1000); // 30-seconds
+        };
+
+        function disableInputButtons() {
+            document.getElementById('open-or-join').disabled = true;
+            document.getElementById('broadcast-id').disabled = true;
+        }
+
+        // ......................................................
+        // ......................Handling broadcast-id................
+        // ......................................................
+
+        var broadcastId = '';
+        if (localStorage.getItem(connection.socketMessageEvent)) {
+            broadcastId = localStorage.getItem(connection.socketMessageEvent);
+        } else {
+            broadcastId = connection.token();
+        }
+        var txtBroadcastId = document.getElementById('broadcast-id');
+        txtBroadcastId.value = broadcastId;
+        txtBroadcastId.onkeyup = txtBroadcastId.oninput = txtBroadcastId.onpaste = function() {
+            localStorage.setItem(connection.socketMessageEvent, this.value);
+        };
+
+        // below section detects how many users are viewing your broadcast
+
+        connection.onNumberOfBroadcastViewersUpdated = function(event) {
+            if (!connection.isInitiator) return;
+
+            document.getElementById('broadcast-viewers-counter').innerHTML = 'Number of broadcast viewers: <b>' + event.numberOfBroadcastViewers + '</b>';
+        };
+
+        //채팅
+        $('#chat').on('submit', function (e) {
+            socket.emit('send message', $('#name').val(), $('#chat_input').val());
+            $('#chat_input').val('');
+            $('#chat_input').focus();
+            e.preventDefault();
+        });
+        socket.on('receive message', function (msg) {
+            $('#chat_area').append(msg + '\n');
+            $('#chat_area').scrollTop($('#chat_area')[0].scrollHeight);
+        });
+        socket.on('change name', function (name) { //4
+            $('#name').val(name);
+        });
+    </script>
+</div>
+
+
+</body>
+</html>

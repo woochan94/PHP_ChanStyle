@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/Poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Italic;
+    src: url('../fonts/Poppins/Poppins-Italic.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url('../fonts/montserrat/Montserrat-Regular.ttf');
+}
+/*---------------------------------------------*/
+.header {
+    height: 125px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.container-menu-header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1100;
+    box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -o-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+    -ms-box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
+}
+
+/* [ Menu ] */
+.wrap-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/** [ Logo ] **/
+.logo {
+    display: block;
+    position: absolute;
+    text-decoration: none;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    left: 100px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 37px;
+    color: black;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.main_menu {
+    list-style-type: none;
+    margin: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_menu > li {
+    display: block;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.main_menu > li > a {
+    font-family: Poppins-Medium;
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    margin-left: 7px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+.main_menu > li > a:hover {
+    text-decoration: none;
+    color: #6c7ae0;
+}
+
+li.sale-noti > a {
+    color: #e65540;
+}
+
+li.sale-noti > a {
+    color: #e65540;
+}
+
+input:focus {
+    outline: none;
+}
+
+.close_position {
+    margin-top: 32px;
+    position: absolute;
+    right: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu_btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar_item_position {
+    padding-left: 35px;
+    font-size: 22px;
+    padding-top: 120px;
+}
+
+.side_login {
+    font-size: 25px;
+}
+
+.side_item_color {
+    color: gray;
+}
+
+.side_phone {
+    font-family: Poppins-Italic;
+    font-size: 23px;
+    color: #ff353d;
+    padding-top: 5px;
+}
+
+.side_cust_info_li {
+    font-size: 13px;
+}
+
+.sidebar_item_position > li {
+    list-style-type: none;
+}
+
+.p-t-40 {
+    padding-top: 40px;
+}
+
+#cc_ul > li {
+    list-style-type: none;
+}
+
+.m-text17 {
+    font-size: 30px;
+    color: #555555;
+    line-height: 1.2;
+}
+
+#streaming_container {
+    height: 750px;
+    margin-left: 110px;
+    margin-right: 110px;
+    background: #eeeeee;
+    border: 1px solid #eeeeee;
+}
+
+#video-preview {
+    float: left;
+    width: 880px;
+    height: 690px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+#chat {
+    display: inline-block;
+    width: 650px;
+    height: 680px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: white;
+}
+
+#chat_area {
+    width: 650px;
+    height: 610px;
+    border: none;
+    resize: none;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 17px;
+}
+
+#chat_input {
+    float: left;
+    margin-top: 25px;
+    width: 565px;
+    height: 42px;
+    padding-left: 15px;
+    font-size: 20px;
+    border: 1px solid #555555;
+}
+
+#chat_submit {
+    margin-top: 25px;
+    height: 42px;
+    width: 85px;
+    background: #555555;
+    color: white;
+    border: none;
+    font-size: 20px;
+}
+

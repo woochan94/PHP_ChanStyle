@@ -1,0 +1,81 @@
+.bgwhite {background-color: white;}
+
+.cart table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.cart th {
+    padding: 8px;
+    text-align: center;
+    background-color: #555555;
+    color: white;
+}
+
+.cart td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.order_all_btn {
+    border: none;
+    font-family: Raleway-Bold;
+    font-size: 15px;
+    color: #fff;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 130px;
+    height: 45px;
+    background-color: #333333;
+    border-radius: 25px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.order_all_btn:hover {
+    background-color: red;
+}
+
+.my_input {
+    display: inline;
+}
+
+.my_count {
+    width: 30px;
+    padding-left: 10px;
+}
+
+.my_-count {
+    width: 30px;
+    height: 30px;
+}
+
+.my_\+count {
+    width: 30px;
+    height: 30px;
+}
+
+.order_btn {
+    border: none;
+    color: black;
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.order_btn:hover {
+    background-color: red;
+    color: white;
+    transition: 0.3s;
+}

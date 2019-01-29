@@ -1,0 +1,118 @@
+.vertical-menu {
+    width: 20%;
+    height: 500px;
+    background-color: #eee;
+    float: left;
+}
+
+.vertical-menu a {
+    color: #000;
+}
+
+.vertical-menu button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: center;
+    padding: 22px 15px;
+}
+
+.vertical-menu button:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tabcontent {
+    float: left;
+}
+
+.page_content {
+    margin-top: 53px;
+    margin-left: 50px;
+}
+
+.list-mypage {
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+.list-mypage thead th {
+    height: 40px;
+    background-color: #555555;
+    color: white;
+    border-bottom: 1px solid #CCC;
+    font-weight: bold;
+    padding-left: 30px;
+    text-align: center;
+}
+
+.list-mypage tbody td {
+    text-align: center;
+    padding-left: 20px;
+    border-bottom: 1px solid #CCC;
+    font-size: 14px
+}
+
+.list-mypage tbody td a {
+    color: #000;
+}
+
+
+.pagination2 {
+    display: inline-block;
+    margin-top: 60px;
+    margin-left: 120px;
+}
+
+.pagination2 a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination2 a.active {
+    color: white;
+}
+
+.pagination2 a:hover:not(.active) {background-color: #ddd;}
+
+
+.list-mypage-board {
+    margin-top: 100px;
+    margin-left: 225px;
+}
+
+.list-mypage-board thead th {
+    height: 40px;
+    border-top: 2px solid #09C;
+    border-bottom: 1px solid #CCC;
+    font-weight: bold;
+    padding-left: 30px;
+    text-align: center;
+}
+
+.list-mypage-board tbody td {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    border-bottom: 1px solid #CCC;
+    font-size: 14px
+}
+
+.list-mypage-board tbody td a {
+    color: #000;
+}
