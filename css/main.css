@@ -383,7 +383,8 @@ input:focus {
 
 .best {
     font-family: Poppins-Medium;
-    font-size: 15px;
+    font-size: 16px;
+    margin-top: 7px;
 }
 
 /* [ New Product ]*/

@@ -1,5 +1,5 @@
 <?php
-include "../db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
 
 $bno = $_POST['bno'];
 $sql = mq("insert into reply(con_num,name,pw,content) values('".$bno."','".$_SESSION['username']."','".null."','".$_POST['content']."')");

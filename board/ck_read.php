@@ -1,5 +1,5 @@
 <?php
-include "../db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
 ?>
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" />
     <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>

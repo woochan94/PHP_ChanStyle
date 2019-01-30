@@ -1,5 +1,5 @@
 <?php
-include "../db.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
 
 $rno = $_POST['rno'];
 $sql = mq("select * from reply where idx='".$rno."'");

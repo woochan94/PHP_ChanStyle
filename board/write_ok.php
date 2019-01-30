@@ -2,7 +2,7 @@
 /**
  * write.php에서 입력한 내용을 DB에 올려주는 페이지
  */
-include "../db.php"; // DB 파일을 불러온다.
+include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
 
 $date = date('Y-m-d');
 $name = $_SESSION['username'];

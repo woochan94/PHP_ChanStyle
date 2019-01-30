@@ -38,11 +38,24 @@ $output .= "
 
 while($row = mysqli_fetch_array($query)) {
     $output .= '
-        <div>작성자 : '.$row['name'].'</div>
-        <div>'.$row['content'].'</div>
-        <hr>
+        <div style="font-size: 17px; font-family: Tahoma, Geneva, sans-serif; display: inline;">작성자 : '.$row['name'].' 
+    ';
+    if($row['name'] == $_SESSION['username'] || $_SESSION['userid'] == 'admin') {
+        $output .= '
+         <form action="review_delete.php" method="post" style="display: inline">
+            <input type="hidden" name="idx" value="'.$row['idx'].'">
+            <input type="hidden" name="bno" value="'.$bno.'">
+            <input type="submit" value="삭제" style="width: 50px; height: 25px; display: inline; margin-left: 900px; background: transparent; cursor: pointer; color: #09C;">
+        </form>
+        ';
+    }
+    $output .= '
+  </div> 
+        <div style="font-size: 17px; font-family: Tahoma, Geneva, sans-serif; margin-bottom: 5px; margin-top: 10px; margin-left: 5px">' . $row['content'] . '</div>
+    <hr>
     ';
 }
+
 $output .= '</div></div>';
 
 $output .= '
@@ -111,4 +124,3 @@ echo $output;
        })
     });
 </script>
-
