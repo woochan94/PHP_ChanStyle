@@ -135,13 +135,13 @@ $board = $sql->fetch_array();
                                 if($id == "admin"){ // 로그인한 아이디가 관리자일 경우(admin)
                                     echo "<li style='font-size: 15px; margin-bottom: 20px'>관리자 계정입니다.</li>";
                                     echo "<li><a href='/ChanStyle/page/Login/Logout.php' class='side_item_color'>Logout</a></li>";
-                                    echo "<li class=''><a href='/ChanStyle/page/Admin/adminPage.php' class='side_item_color'>AdminPage</a></li>";
+                                    echo "<li class='p-t-40'><a href='/ChanStyle/page/Admin/adminPage.php' class='side_item_color'>AdminPage</a></li>";
                                     echo "<li class='p-t-40'><a href='/ChanStyle/page/Shop/cart.php' class='side_item_color'> Cart </a></li>";
                                 } else { // 일반 사용자 아이디일 경우
                                     $username = $_SESSION['username'];
                                     echo "<li style='font-size: 15px; margin-bottom: 20px'>$username 님 환영합니다.</li>";
                                     echo "<li><a href='/ChanStyle/page/Login/Logout.php' class='side_item_color'>Logout</a></li>";
-                                    echo "<li><a href='/ChanStyle/page/Client/MyPage.php' class='side_item_color'>MyPage</a></li>";
+                                    echo "<li class='p-t-40'><a href='/ChanStyle/page/Client/MyPage.php' class='side_item_color'>MyPage</a></li>";
                                     echo "<li class='p-t-40'><a href='/ChanStyle/page/Shop/cart.php' class='side_item_color'> Cart </a></li>";
                                 }
                             }
@@ -328,33 +328,72 @@ $board = $sql->fetch_array();
             <!-- 리뷰 입력 폼 -->
             <div id="div3" class="m-t-10 m-b-30">
                 <hr>
-                <form id="review_form" method="post">
-                    <div class="m-text15 m-b-10"> Review</div>
-                    <input type="hidden" name="bno" value="<?php echo $bno ?>">
-                    <textarea id="review_content" name="content" style="width: 100%; height: 150px; border: 1px solid #dadada; padding-top: 10px; padding-left: 10px" placeholder="리뷰를 작성해주세요"></textarea>
-                    <input id="review_submit" class="m-t-10 m-b-30" type="submit" value="등록하기" style="padding: 10px; margin-left: 1035px; display: inline" >
-                </form>
-
-                <hr>
-            </div>
-            <div class="review_box">
-                <div>
+                <form id="review_form">
                     <?php
-                    $sql2 = mq("select * from review where con_num='$bno'");
-                    while($review = $sql2->fetch_array()) {
+                    if (!isset($_SESSION['userid'])) {
+                        echo "<div class='m-text15 m-b-10'>Review (로그인을 하셔야 리뷰를 작성하실 수 있습니다.)</div>";
+                    } else {
                         ?>
-                        <div>작성자 : <?php echo $review['name'];?></div>
-                        <div><?php echo $review['content'];?></div>
-                        <hr>
-                    <?php
+                        <div class="m-text15 m-b-10"> Review</div>
+                        <input type="hidden" name="bno" value="<?php echo $bno ?>">
+                        <textarea id="review_content" name="content"
+                                  style="width: 100%; height: 150px; border: 1px solid #dadada; padding-top: 10px; padding-left: 10px; resize: none;"
+                                  placeholder="리뷰를 작성해주세요"></textarea>
+                        <input id="review_submit" class="m-t-10 m-b-30" type="button" value="등록하기"
+                               style="padding: 10px; margin-left: 1030px; display: inline" onclick="ajax_review()">
+                        <?php
                     }
                     ?>
-                </div>
+                </form>
+                <hr>
             </div>
+            <div>
+                <div id="pagination_data"></div>
+            </div>
+
         </div>
     </div>
 
     <img src="/ChanStyle/images/icons/go_up.png" class="return-top" style="right:50px; bottom:15px; position:fixed; z-index:9999;" width="50px">
+
+    <script>
+        $(document).ready(function () {
+            var idx = $('input[name=bno]').val();
+            load_data();
+            function load_data(page) {
+                $.ajax({
+                    url:"review_pagination.php",
+                    method:"post",
+                    data:{page:page, idx:idx},
+                    success:function (data) {
+                        $('#pagination_data').html(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '.pagination_link', function () {
+                var page = $(this).attr("id");
+                load_data(page);
+
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function ajax_review() {
+            var param = $("#review_form").serialize();
+            $.ajax({
+                type: 'post',
+                url:'/ChanStyle/page/Shop/review_ok.php',
+                data : param,
+                success: function (data) {
+                    var aa = JSON.parse(data);
+                    $("#review_content").val('');
+                    $("#review_box").prepend('<div><div>작성자 : ' + aa[1] + '</div><div>' + aa[0] + '</div><hr></div>');
+                }
+            });
+        }
+    </script>
 
     <script type="text/javascript">
         function goTop(){

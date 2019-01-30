@@ -43,19 +43,4 @@ $(document).ready(function(){
     })
 });
 
-$(document).ready(function () {
-    $("#review_submit").click(function () {
-        var params = $("#review_form").serialize();
-        console.log(params);
-        $.ajax({
-            type: 'post',
-            url:'review_ok.php?=<?php echo $bno; ?>',
-            data: params,
-            dataType: 'html',
-            success: function (data) {
-                $("#review_content").val('');
-                console.log(data);
-            }
-        });
-    });
-});
+
