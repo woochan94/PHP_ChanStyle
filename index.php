@@ -46,14 +46,33 @@ include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
                         <li class="active-menu"><a href="/ChanStyle/index.php">Home</a></li>
                         <li class="sale-noti"><a href="/ChanStyle/page/Shop/Shop_Main.php">Shop</a></li>
                         <li><a href="/ChanStyle/board/board.php">Board</a></li>
-                        <li>
-                            <form action="http://localhost:3000/form_receiver" method="post">
-                                <input type="hidden" id="name" name="name" value="<?php echo $_SESSION['username'];?>";/>
-                                <input id="liveShop" type="submit" value="LiveShop">
-                            </form>
-                        </li>
+                        <?php
+                        if(!isset($_SESSION['userid'])) {
+                            echo "
+                                <li><a href='/ChanStyle/page/Login/Login.php' id='notLogin_liveshop' onclick='needLogin()'>LiveShop</a></li>
+                            ";
+                        } else if(isset($_SESSION['userid']) && $_SESSION['userid'] == 'admin') {
+                           echo "
+                                <li><a href='/ChanStyle/nodejs/Streaming/Create_LiveShop.php'>LiveShop</a> </li>
+                           ";
+                        } else {
+                            echo "
+                                <li>
+                                    <form action='http://localhost:3000/form_receiver' method='post'>
+                                        <input type='hidden' id='name' name='name' value='$_SESSION[username]'>
+                                        <input type='button' id='liveShop' value='LiveShop'>
+                                    </form>
+                                </li>
+                            ";
+                        }
+                        ?>
                         <li><a href="/ChanStyle/page/About/about.php">About</a> </li>
                     </ul>
+                    <script>
+                        function needLogin() {
+                            alert("로그인이 필요합니다.");
+                        }
+                    </script>
 
                     <!-- SideBar-Menu -->
                     <div class="ui sidebar right vertical menu">

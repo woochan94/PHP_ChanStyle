@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', express.static(__dirname));
 
 var name;
+var title;
 
 app.get('/',function(req, res){  //2
     res.sendFile(__dirname + '/Streaming/Streaming.html');
@@ -17,7 +18,6 @@ app.get('/',function(req, res){  //2
 
 app.post('/form_receiver', function (req, res) {
     name = req.body.name;
-    console.log(name);
     res.sendFile(__dirname + '/Streaming/Streaming.html');
 });
 

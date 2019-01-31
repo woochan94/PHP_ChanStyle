@@ -78,7 +78,7 @@
         </div>
     </div>
 </header>
-<h4 class="m-text17" style="margin-left: 150px; margin-bottom: 20px">방송제목</h4>
+<h4 class="m-text17" style="margin-left: 150px; margin-bottom: 20px" id="title"></h4>
 <div id="streaming_container">
     <video id="video-preview" autoplay="true" style="width: 880px; height: 690px;" controls loop></video>
     <div id="chat">
@@ -411,7 +411,12 @@
         });
         socket.on('change name', function (name) { //4
             $('#name').val(name);
+            console.log(name);
         });
+        socket.on('title',function (title) {
+            console.log(title);
+            $('#title').append(title);
+        })
     </script>
 </div>
 

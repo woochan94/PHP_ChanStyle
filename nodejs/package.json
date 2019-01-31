@@ -7,9 +7,10 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "log": "^3.2.0",
+    "mysql": "^2.16.0",
+    "rtcmulticonnection-server": "latest",
     "socket.io": "^2.2.0",
-    "webrtc-adapter": "^7.2.0",
-    "rtcmulticonnection-server": "latest"
+    "webrtc-adapter": "^7.2.0"
   },
   "devDependencies": {},
   "scripts": {
