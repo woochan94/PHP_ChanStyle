@@ -38,13 +38,23 @@ app.post('/form_receiver', function (req, res) {
             if(err) {
                 console.log("Error : " + err);
             } else {
-                console.log(result);
+                res.sendFile(__dirname + '/Streaming/Streaming.html');
             }
         });
     } else {
-        console.log('고객');
+        connection.query('select * from test', function (err,result) {
+            if(err) {
+                console.log("Error : " + err);
+            } else {
+                if(result.length == 0) {
+                    res.sendFile(__dirname + '/Streaming/Notstart_Streaming.html');
+                } else {
+                    res.sendFile(__dirname + '/Streaming/Streaming.html');
+                }
+            }
+        })
     }
-    res.sendFile(__dirname + '/Streaming/Streaming.html');
+
 });
 
 io.on('connection', function(socket) {

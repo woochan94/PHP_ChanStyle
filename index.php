@@ -60,7 +60,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/ChanStyle/db.php";
                                 <li>
                                     <form action='http://localhost:3000/form_receiver' method='post'>
                                         <input type='hidden' id='name' name='name' value='$_SESSION[username]'>
-                                        <input type='button' id='liveShop' value='LiveShop'>
+                                        <input type='submit' id='liveShop' value='LiveShop'>
                                     </form>
                                 </li>
                             ";

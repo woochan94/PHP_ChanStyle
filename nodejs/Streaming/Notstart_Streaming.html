@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChanStyle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/Streaming/images/icons/title_icon.png"/>
+    <link rel="stylesheet" type="text/css" href="/Streaming/css/streaming.css">
+    <link rel="stylesheet" type="text/css" href="/Streaming/vendor/semantic/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/Streaming/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="/Streaming/vendor/semantic/semantic.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+    <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+
+    <style>
+        .jb-wrap {
+            width: 60%;
+            margin: 0px auto;
+            position: relative;
+        }
+        .jb-wrap img {
+            width: 100%;
+            vertical-align: middle;
+        }
+        .jb-text {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        .jb-text-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+        .jb-text-table-row {
+            display: table-row;
+        }
+        .jb-text-table-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .jb-text p {
+            background-color: transparent;
+            text-align: center;
+            color: white;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container-menu-header">
+        <div class="wrap-header">
+            <a class="logo" href="http://localhost:80/ChanStyle/index.php">CHANSTYLE</a>
+
+            <div class="wrap_menu">
+                <nav class="menu">
+                    <ul class="main_menu">
+                        <li class="active-menu"><a href="http://localhost:80/ChanStyle/index.php">Home</a></li>
+                        <li class="sale-noti"><a href="http://localhost:80/ChanStyle/page/Shop/Shop_Main.php">Shop</a>
+                        </li>
+                        <li><a href="http://localhost:80/ChanStyle/board/board.php">Board</a></li>
+                        <li><a href="http://localhost:3000/streaming.html">LiveShop</a></li>
+                        <li><a href="http://localhost:80/ChanStyle/page/About/about.php">About</a></li>
+                    </ul>
+
+                    <div class="ui sidebar right vertical menu">
+                        <button class="close_position"><i class="side_bar close icon"></i></button>
+                        <ul class="sidebar_item_position">
+                            <li><a href='http://localhost:80/ChanStyle/page/Login/Login.php' class='side_item_color'>Login</a>
+                            </li>
+                            <li class="p-t-40"><a href='http://localhost:80/ChanStyle/page/Login/Login.php'
+                                                  class='side_item_color'>MyPage</a></li>
+                            <li class="p-t-40"><a href="http://localhost:80/ChanStyle/page/Shop/cart.php"
+                                                  class="side_item_color"> Cart </a></li>
+                            <li class="p-t-40"><a href="http://localhost:80/ChanStyle/board/board.php"
+                                                  class="side_item_color"> FAQs </a></li>
+                        </ul>
+
+                        <div style="padding-top: 110px">
+                            <h2 style="color: black; padding-left: 20px"> CUSTOMER CENTER </h2>
+                            <ul id="cc_ul" style="padding-left: 30px">
+                                <li class="side_phone">1544 - 0000</li>
+                                <li class="side_cust_info_li" style="padding-top: 30px;">MON-FRI AM 10:00 ~ PM 05:00
+                                </li>
+                                <li class="side_cust_info_li" style="padding-top: 10px;">[ LUNCH TIME ]</li>
+                                <li style="padding-top: 5px;">AM 10:00 ~ PM 05:00</li>
+                                <li class="side_cust_info_li" style="padding-top: 10px;">SUNDAY/HOLIDAY OFF</li>
+                            </ul>
+                        </div>
+
+                        <div style="padding-top: 60px; padding-left: 30px;">
+                            <h2>BANK INFO</h2>
+                            <ul style="list-style-type: none;">
+                                <li>국민 274102-04-139880</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pusher" style="position: absolute; right: 20px; top: 28px; ">
+                        <button class="menu_btn"><i id="menu" class="side_bar align justify icon icon_width"></i>
+                        </button>
+                    </div>
+                    <script>
+                        $('.side_bar').click(function () {
+                            $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
+                        })
+                    </script>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="jb-wrap">
+    <div class="jb-image">
+        <img src="http://localhost:80/ChanStyle/nodejs/Streaming/images/smart-tv-3889141_1920.png">
+    </div>
+    <div class="jb-text">
+        <div class="jb-text-table">
+            <div class="jb-text-table-row">
+                <div class="jb-text-table-cell">
+                    <p>현재 진행중인 <span style="color: red;">Live</span> 방송이 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
