@@ -34,13 +34,7 @@ app.post('/form_receiver', function (req, res) {
         pname = req.body.pname;
         pprice = req.body.pprice;
 
-        connection.query('insert into test(title, pname, pprice) values (?,?,?)',[title,pname,pprice], function (err, result)  {
-            if(err) {
-                console.log("Error : " + err);
-            } else {
-                res.sendFile(__dirname + '/Streaming/Streaming.html');
-            }
-        });
+        res.sendFile(__dirname + '/Streaming/Streaming.html');
     } else {
         connection.query('select * from test', function (err,result) {
             if(err) {
@@ -60,6 +54,7 @@ app.post('/form_receiver', function (req, res) {
 io.on('connection', function(socket) {
 
     var name2 = name;
+    var name3; //관리자 구분하기 위한 변수
 
     io.to(socket.id).emit('change name', name2);
     io.to(socket.id).emit('title',title);
@@ -70,7 +65,34 @@ io.on('connection', function(socket) {
         io.emit('receive message', msg);
     });
 
+    socket.on('test', function (text) {
+        if(text == 123) {
+            name3 = socket.id;
+            connection.query('insert into test(title, pname, pprice) values (?,?,?)',[title,pname,pprice], function (err, result)  {
+                if(err) {
+                    console.log("Error : " + err);
+                } else {
+
+                }
+            });
+        } else {
+            console.log("고객");
+        }
+    })
+
     socket.on('disconnect', function(){ //3-2
+        if(socket.id == name3) {
+            connection.query('truncate test',function (err,result) {
+                if(err) {
+
+                }else {
+
+                }
+            });
+            console.log('관리자 disconnect');
+        } else {
+            console.log('고객 disconnect');
+        }
         console.log('user disconnected: ', socket.id);
     });
 });
